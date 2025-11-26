@@ -13,8 +13,8 @@ import { SnapSection } from "./SnapSection";
 interface ScrollContextType {
   progress: number;
   scrollToSection: (index: number) => void;
-  sectionRefs: React.RefObject<HTMLDivElement>[];
-  scrollRef: React.RefObject<HTMLDivElement>;
+  sectionRefs: React.RefObject<HTMLDivElement | null>[];
+  scrollRef: React.RefObject<HTMLDivElement> | null;
 }
 
 const ScrollContext = createContext<ScrollContextType | null>(null);
@@ -33,15 +33,17 @@ interface ScrollContainerProps {
 export const ScrollContainer: React.FC<ScrollContainerProps> = ({
   children,
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(
+    null
+  ) as React.RefObject<HTMLDivElement>;
   const [progress, setProgress] = useState(0);
 
   const childrenArray = React.Children.toArray(
     children
   ) as React.ReactElement[];
-  const sectionRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
-  sectionRefs.current = childrenArray.map(() =>
-    React.createRef<HTMLDivElement>()
+  // Initialize sectionRefs with a ref for each child that is a SnapSection
+  const sectionRefs = useRef<React.RefObject<HTMLDivElement | null>[]>(
+    childrenArray.map(() => React.createRef<HTMLDivElement>())
   );
 
   useEffect(() => {

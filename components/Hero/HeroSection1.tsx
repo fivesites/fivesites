@@ -24,7 +24,7 @@ export default function HeroSection1() {
         <div className="grid grid-cols-4 text-2xl pt-2 w-full ">
           <TypingText
             duration={25}
-            text="We left our five months long internship..."
+            text="We left our five months long internship and took their developer with us..."
             className="col-span-4 lg:col-span-2 indent-12"
           />
         </div>

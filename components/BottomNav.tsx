@@ -74,19 +74,19 @@ export default function BottomNav() {
     <div className="fixed bottom-4 left-0 w-full flex justify-center pointer-events-none z-50">
       <div
         ref={containerRef}
-        className="relative w-[90%] h-1 bg-gray-300 pointer-events-auto rounded-full"
+        className="relative w-[100%] h-1 bg-gray-300 pointer-events-auto rounded-full"
       >
         <motion.div
-          className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-black rounded-full shadow-lg"
+          className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-black  shadow-lg"
           style={{ x: springX }}
         />
 
-        <div className="absolute top-0 left-0 w-full flex justify-between">
+        <div className="absolute top-1/2 -translate-y-1/2 left-0 w-full flex justify-between">
           {sectionRefs.map((_, i) => (
             <button
               key={i}
               onClick={() => jumpToSection(i)}
-              className="w-4 h-4 rounded-full bg-gray-500 hover:bg-black"
+              className="w-4 h-4 rounded-full bg-black hover:bg-black"
             />
           ))}
         </div>

@@ -52,7 +52,7 @@ export default function LoadFiveImage() {
 
   return (
     <motion.div className="grid grid-cols-1 md:grid-cols-4 h-[75vh] w-full relative items-center justify-center ">
-      <div className={`col-span-4 md:col-span-1 relative w-full h-[80vh]`}>
+      <div className={`col-span-4 md:col-span-1 relative w-full h-[75vh]`}>
         <AnimatePresence mode="wait">
           {currentImage && (
             <motion.div
