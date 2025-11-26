@@ -65,7 +65,7 @@ export default function CookieConsent() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6 }}
-          className="fixed top-0 lg:bottom-0 lg:top-auto left-0 w-full h-screen lg:h-[50vh] z-40 p-4  flex flex-col items-center justify-start right-auto backdrop-blur-xs lg:justify-end lg:items-end"
+          className="fixed top-0 lg:bottom-0 lg:top-auto left-0 w-full h-screen  z-40 p-4  flex flex-col items-center justify-start right-auto backdrop-blur-xs lg:justify-end lg:items-end"
         >
           {/* Consent Box */}
           <motion.div
