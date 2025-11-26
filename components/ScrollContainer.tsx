@@ -41,7 +41,7 @@ export const ScrollContainer: React.FC<ScrollContainerProps> = ({
   const childrenArray = React.Children.toArray(
     children
   ) as React.ReactElement[];
-  // Initialize sectionRefs with a ref for each child that is a SnapSection
+
   const sectionRefs = useRef<React.RefObject<HTMLDivElement | null>[]>(
     childrenArray.map(() => React.createRef<HTMLDivElement>())
   );
@@ -88,10 +88,7 @@ export const ScrollContainer: React.FC<ScrollContainerProps> = ({
         scrollRef: containerRef,
       }}
     >
-      <div
-        ref={containerRef}
-        className="h-screen overflow-y-scroll scroll-smooth snap-y snap-mandatory"
-      >
+      <div ref={containerRef} className="h-screen overflow-y-scroll ">
         {childrenWithRefs}
       </div>
     </ScrollContext.Provider>

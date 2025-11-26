@@ -30,9 +30,6 @@ export default function HomeScrollClient() {
         <SnapSection>
           <PrivacyPolicy />
         </SnapSection>
-        <SnapSection>
-          <PrivacyPolicy />
-        </SnapSection>
       </ScrollContainer>
     </>
   );

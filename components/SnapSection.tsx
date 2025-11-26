@@ -11,7 +11,7 @@ export const SnapSection = React.forwardRef<HTMLDivElement, SnapSectionProps>(
     return (
       <section
         ref={ref}
-        className="w-full h-screen snap-center flex items-center justify-center"
+        className="w-full h-screen  flex items-center justify-center"
       >
         {children}
       </section>

@@ -1,16 +1,36 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useScroll,
+} from "framer-motion";
 import { useScrollSections } from "./ScrollContainer";
 
 export default function BottomNav() {
   const { scrollRef, sectionRefs } = useScrollSections();
-
   const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ container: scrollRef });
+
   const [containerWidth, setContainerWidth] = useState(0);
   const ballSize = 16;
 
+  const dotCount = sectionRefs.length;
+  const dotPositions = Array.from(
+    { length: dotCount },
+    (_, i) => (i * (containerWidth - ballSize)) / (dotCount - 1)
+  );
+
+  // Divide scroll into equal segments
+  const sectionProgress = Array.from(
+    { length: dotCount },
+    (_, i) => i / (dotCount - 1)
+  );
+
+  const ballX = useTransform(scrollYProgress, sectionProgress, dotPositions);
   const x = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 200, damping: 30 });
 
@@ -25,26 +45,18 @@ export default function BottomNav() {
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
-  const dotCount = sectionRefs.length;
-  const dotPositions = Array.from(
-    { length: dotCount },
-    (_, i) => (i * (containerWidth - ballSize)) / (dotCount - 1)
-  );
-
   useEffect(() => {
-    if (!scrollRef.current) return;
+    if (!scrollRef || !scrollRef.current) return;
 
     const container = scrollRef.current;
 
     const handleScroll = () => {
       const scrollTop = container.scrollTop;
 
-      // Relative top of each section inside the container
       const sectionTops = sectionRefs.map((ref) =>
         ref.current ? ref.current.offsetTop - container.offsetTop : 0
       );
 
-      // Find nearest section
       let nearestIndex = 0;
       let minDistance = Infinity;
       sectionTops.forEach((top, i) => {
@@ -60,7 +72,6 @@ export default function BottomNav() {
 
     container.addEventListener("scroll", handleScroll);
 
-    // initialize
     handleScroll();
 
     return () => container.removeEventListener("scroll", handleScroll);
@@ -71,10 +82,10 @@ export default function BottomNav() {
   };
 
   return (
-    <div className="fixed bottom-4 left-0 w-full flex justify-center pointer-events-none z-50">
+    <div className="fixed bottom-4 left-0 w-full flex justify-center pointer-events-none z-50 px-2">
       <div
         ref={containerRef}
-        className="relative w-[100%] h-1 bg-gray-300 pointer-events-auto rounded-full"
+        className="relative w-full h-0.5 bg-black pointer-events-auto "
       >
         <motion.div
           className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-black  shadow-lg"
@@ -86,7 +97,7 @@ export default function BottomNav() {
             <button
               key={i}
               onClick={() => jumpToSection(i)}
-              className="w-4 h-4 rounded-full bg-black hover:bg-black"
+              className="w-2 h-2  bg-black hover:bg-gray-500 transition-all cursor-pointer"
             />
           ))}
         </div>
