@@ -4,6 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-zirkonBold: var(--font-zirkonBold);
+  --font-zirkonMedium: var(--font-zirkonMedium);
+  --font-zirkonMediumItalic: var(--font-zirkonMediumItalic);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -117,11 +120,4 @@
   body {
     @apply bg-background text-foreground;
   }
-}
-
-body {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-}
-.fivesites-logo {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
