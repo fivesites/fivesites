@@ -26,7 +26,7 @@ export default function Hero() {
 
       {/* LIST 1 */}
 
-      <ScrollSection className="grid grid-cols-5 lg:grid-cols-12 h-[300vh] space-y-12 -mt-[50vh]">
+      <ScrollSection className="grid grid-cols-5 lg:grid-cols-12 h-[300vh] space-y-12 -mt-[40vh]">
         <ul className="col-span-5 lg:col-span-12 grid grid-cols-5 lg:grid-cols-12 space-y-6">
           <span className="col-start-1 col-span-1 lg:col-start-3 lg:col-span-3">
             1.
@@ -140,7 +140,7 @@ export default function Hero() {
             texts={[
               'Oh, and we are calling the project <span class="font-zirkonBold">FIVE SITES</span>',
               "see you soon",
-              "/ Joel, Massi, and Justus",
+              "/ Joel, Justus & Massi",
             ]}
           />
         )}
